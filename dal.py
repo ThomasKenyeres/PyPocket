@@ -1,17 +1,26 @@
 from db_requests import *
 
+def dictify(tup):
+    result = {
+        "id": tup[0],
+        "key": tup[1],
+        "description": tup[2],
+        "value": tup[3]
+    }
+    return result
+
 def get_all_snippets():
-    return load_all_snippets()
+    return [dictify(snippet) for snippet in load_all_snippets()]
 
 def get_snippet_by_id(snippet_id):
     result = load_snippet_by_id(snippet_id)
     if len(result) > 0:
-        return result[0]
+        return dictify(result[0])
 
 def get_snippet_by_key(key):
     result = load_snippet_by_key(key)
     if len(result) > 0:
-        return result[0]
+        return dictify(result[0])
 
 def add_snippet(snippet):
     key = snippet["key"]
