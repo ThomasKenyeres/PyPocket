@@ -42,3 +42,11 @@ def remove_snippet_from_db_by_key(key):
     sql = "DELETE FROM Snippets WHERE snippetKey=?"
     connection.cursor().execute(sql, query_params)
     connection.commit()
+
+def update_snippet_by_key(key, description, value):
+    print("upd")
+    connection = get_connection()
+    query_params = (key, description, value)
+    sql = "UPDATE Snippets SET snippetDescription=?, snippetValue=? WHERE snippetKey=?"
+    connection.cursor().execute(sql, query_params)
+    connection.commit()
