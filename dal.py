@@ -28,6 +28,14 @@ def add_snippet(snippet):
     value = snippet["value"]
     add_snippet_to_db(key, description, value)
 
+def modify_snippet(key, snippet):
+    if get_snippet_by_key(key) is not None:
+        description = snippet["description"]
+        value = snippet["value"]
+        update_snippet_by_key(key, description, value)
+    else:
+        raise ValueError
+
 def remove_snippet_by_id(snippet_id):
     remove_snippet_from_db_by_id(snippet_id)
 
